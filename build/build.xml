@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<project name="jackson" basedir="." default="build">
+	    <property name="src.dir" value="../src"/>
+	    <property name="build.dir" value="../classes"/>
+	    <property name="name" value="fax"/>
+	    <property name="PATH" value="/opt/jdk1.7.0_71/bin/"/>
+	    <path id="master-classpath">
+	        <fileset dir="../lib">
+	            <include name="*.jar"/>
+	        </fileset>
+	        <pathelement path="${build.dir}"/>
+	        <pathelement path="${PATH}"/>
+	    </path>
+
+	    <target name="build" description="Compile source tree java files">
+	        <mkdir dir="${build.dir}"/>
+	        <javac destdir="${build.dir}" source="1.5" target="1.5">
+	            <src path="${src.dir}"/>
+	            <classpath refid="master-classpath"/>
+	        </javac>
+	    	
+	    	<jar destfile="jackson.jar"
+	    		     basedir="../classes"
+	    		     includes=""
+	    		     excludes="">
+	    		     <manifest>
+	    		      <attribute name="Main-Class" value=""/>
+	    		     </manifest>
+	    		</jar>
+	    </target>
+	 
+	    <target name="clean" description="Clean output directories">
+	        <delete>
+	            <fileset dir="${build.dir}">
+	                <include name="**/*.class"/>
+	            </fileset>
+	        </delete>
+	    </target>
+	
+	
+</project>

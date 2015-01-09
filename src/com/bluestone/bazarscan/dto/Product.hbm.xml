@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Nov 29, 2013 3:41:14 PM by Hibernate Tools 3.3.0.GA -->
+<hibernate-mapping>
+    <class name="com.dto.Product" table="Product">
+        <id name="product_Id" type="long">
+            <column name="product_id" />
+            <generator class="native" />
+        </id>
+        <property name="giftWrapAvailable" type="java.lang.String">
+            <column name="giftWrapAvailable" />
+        </property>
+<property name="totalReview" type="java.lang.String">
+            <column name="totalReview" />
+        </property>
+        <property name="url" type="java.lang.String">
+            <column name="url" />
+        </property>
+         <property name="mfg" type="java.lang.String">
+            <column name="mfg" />
+        </property>
+         <property name="isInStock" type="java.lang.String">
+            <column name="isInStock" />
+        </property>
+         <property name="modelName" type="java.lang.String">
+            <column name="modelName" />
+        </property>
+        
+        
+</class>
+</hibernate-mapping>

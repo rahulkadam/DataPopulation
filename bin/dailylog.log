@@ -1,0 +1,180 @@
+23:47:24,887  WARN main dto.test:43 - Warn Message!
+ 23:47:24,891  INFO main dto.test:44 - printing log
+ 23:47:25,543  INFO main common.Version:37 - Hibernate Commons Annotations 3.2.0.Final
+ 23:47:25,548  INFO main cfg.Environment:603 - Hibernate 3.6.10.Final
+ 23:47:25,550  INFO main cfg.Environment:636 - hibernate.properties not found
+ 23:47:25,553  INFO main cfg.Environment:814 - Bytecode provider name : javassist
+ 23:47:25,556  INFO main cfg.Environment:695 - using JDK 1.4 java.sql.Timestamp handling
+ 23:47:25,612  INFO main cfg.Configuration:2156 - configuring from resource: /hibernate.cfg.xml
+ 23:47:25,612  INFO main cfg.Configuration:2175 - Configuration resource: /hibernate.cfg.xml
+ 23:47:25,658  WARN main util.DTDEntityResolver:73 - recognized obsolete hibernate namespace http://hibernate.sourceforge.net/. Use namespace http://www.hibernate.org/dtd/ instead. Refer to Hibernate 3.6 Migration Guide!
+ 23:47:25,687  INFO main cfg.Configuration:2297 - Configured SessionFactory: null
+ 23:47:25,728  INFO main cfg.AnnotationBinder:532 - Binding entity from annotated class: com.dto.Product_Header
+ 23:47:25,772  INFO main annotations.EntityBinder:530 - Bind entity com.dto.Product_Header on table PRODUCT_HEADER
+ 23:47:25,822  INFO main cfg.AnnotationBinder:532 - Binding entity from annotated class: com.dto.Product_Supplier
+ 23:47:25,823  INFO main annotations.EntityBinder:530 - Bind entity com.dto.Product_Supplier on table PRODUCT_SUPPLIER
+ 23:47:25,828  INFO main cfg.AnnotationBinder:532 - Binding entity from annotated class: com.dto.manufacturer
+ 23:47:25,830  INFO main annotations.EntityBinder:530 - Bind entity com.dto.manufacturer on table MANUFACTURER
+ 23:47:25,834  INFO main cfg.Configuration:1676 - Hibernate Validator not found: ignoring
+ 23:47:25,838  INFO main search.HibernateSearchEventListenerRegister:75 - Unable to find org.hibernate.search.event.FullTextIndexEventListener on the classpath. Hibernate Search is not enabled.
+ 23:47:25,847  INFO main connection.DriverManagerConnectionProvider:64 - Using Hibernate built-in connection pool (not for production use!)
+ 23:47:25,848  INFO main connection.DriverManagerConnectionProvider:65 - Hibernate connection pool size: 20
+ 23:47:25,848  INFO main connection.DriverManagerConnectionProvider:68 - autocommit mode: false
+ 23:47:25,853  INFO main connection.DriverManagerConnectionProvider:103 - using driver: com.mysql.jdbc.Driver at URL: jdbc:mysql://74.63.200.251:3306/Inventory
+ 23:47:25,853  INFO main connection.DriverManagerConnectionProvider:109 - connection properties: {user=rahul, password=****}
+ 23:47:44,557  INFO main dialect.Dialect:136 - Using dialect: org.hibernate.dialect.MySQLDialect
+ 23:47:44,568  INFO main cfg.SettingsFactory:126 - Database ->
+       name : MySQL
+    version : 5.1.73
+      major : 5
+      minor : 1
+ 23:47:44,569  INFO main cfg.SettingsFactory:132 - Driver ->
+       name : MySQL-AB JDBC Driver
+    version : mysql-connector-java-5.1.16 ( Revision: ${bzr.revision-id} )
+      major : 5
+      minor : 1
+ 23:47:44,570  INFO main transaction.TransactionFactoryFactory:62 - Using default transaction strategy (direct JDBC transactions)
+ 23:47:44,571  INFO main transaction.TransactionManagerLookupFactory:83 - No TransactionManagerLookup configured (in JTA environment, use of read-write or transactional second-level cache is not recommended)
+ 23:47:44,571  INFO main cfg.SettingsFactory:179 - Automatic flush during beforeCompletion(): disabled
+ 23:47:44,571  INFO main cfg.SettingsFactory:183 - Automatic session close at end of transaction: disabled
+ 23:47:44,571  INFO main cfg.SettingsFactory:190 - JDBC batch size: 20
+ 23:47:44,571  INFO main cfg.SettingsFactory:193 - JDBC batch updates for versioned data: disabled
+ 23:47:44,572  INFO main cfg.SettingsFactory:198 - Scrollable result sets: enabled
+ 23:47:44,572  INFO main cfg.SettingsFactory:206 - JDBC3 getGeneratedKeys(): enabled
+ 23:47:44,572  INFO main cfg.SettingsFactory:214 - Connection release mode: auto
+ 23:47:44,573  INFO main cfg.SettingsFactory:238 - Maximum outer join fetch depth: 2
+ 23:47:44,573  INFO main cfg.SettingsFactory:241 - Default batch fetch size: 1
+ 23:47:44,573  INFO main cfg.SettingsFactory:245 - Generate SQL with comments: disabled
+ 23:47:44,573  INFO main cfg.SettingsFactory:249 - Order SQL updates by primary key: disabled
+ 23:47:44,573  INFO main cfg.SettingsFactory:253 - Order SQL inserts for batching: disabled
+ 23:47:44,573  INFO main cfg.SettingsFactory:431 - Query translator: org.hibernate.hql.ast.ASTQueryTranslatorFactory
+ 23:47:44,575  INFO main ast.ASTQueryTranslatorFactory:47 - Using ASTQueryTranslatorFactory
+ 23:47:44,575  INFO main cfg.SettingsFactory:261 - Query language substitutions: {}
+ 23:47:44,575  INFO main cfg.SettingsFactory:266 - JPA-QL strict compliance: disabled
+ 23:47:44,575  INFO main cfg.SettingsFactory:271 - Second-level cache: enabled
+ 23:47:44,575  INFO main cfg.SettingsFactory:275 - Query cache: disabled
+ 23:47:44,575  INFO main cfg.SettingsFactory:406 - Cache region factory : org.hibernate.cache.impl.NoCachingRegionFactory
+ 23:47:44,576  INFO main cfg.SettingsFactory:285 - Optimize cache for minimal puts: disabled
+ 23:47:44,576  INFO main cfg.SettingsFactory:294 - Structured second-level cache entries: disabled
+ 23:47:44,580  INFO main cfg.SettingsFactory:314 - Echoing all SQL to stdout
+ 23:47:44,580  INFO main cfg.SettingsFactory:323 - Statistics: disabled
+ 23:47:44,581  INFO main cfg.SettingsFactory:327 - Deleted entity synthetic identifier rollback: disabled
+ 23:47:44,581  INFO main cfg.SettingsFactory:343 - Default entity-mode: pojo
+ 23:47:44,581  INFO main cfg.SettingsFactory:347 - Named query checking : enabled
+ 23:47:44,581  INFO main cfg.SettingsFactory:351 - Check Nullability in Core (should be disabled when Bean Validation is on): enabled
+ 23:47:44,602  INFO main impl.SessionFactoryImpl:202 - building session factory
+ 23:47:44,607  INFO main type.BasicTypeRegistry:150 - Type registration [wrapper_characters_clob] overrides previous : org.hibernate.type.CharacterArrayClobType@c0a9f9
+ 23:47:44,607  INFO main type.BasicTypeRegistry:150 - Type registration [characters_clob] overrides previous : org.hibernate.type.PrimitiveCharacterArrayClobType@d72200
+ 23:47:44,607  INFO main type.BasicTypeRegistry:150 - Type registration [blob] overrides previous : org.hibernate.type.BlobType@1f9338f
+ 23:47:44,608  INFO main type.BasicTypeRegistry:150 - Type registration [java.sql.Blob] overrides previous : org.hibernate.type.BlobType@1f9338f
+ 23:47:44,608  INFO main type.BasicTypeRegistry:150 - Type registration [materialized_clob] overrides previous : org.hibernate.type.MaterializedClobType@1a80aea
+ 23:47:44,608  INFO main type.BasicTypeRegistry:150 - Type registration [materialized_blob] overrides previous : org.hibernate.type.MaterializedBlobType@164b9b6
+ 23:47:44,608  INFO main type.BasicTypeRegistry:150 - Type registration [clob] overrides previous : org.hibernate.type.ClobType@1dc64a5
+ 23:47:44,608  INFO main type.BasicTypeRegistry:150 - Type registration [java.sql.Clob] overrides previous : org.hibernate.type.ClobType@1dc64a5
+ 23:47:44,608  INFO main type.BasicTypeRegistry:150 - Type registration [wrapper_materialized_blob] overrides previous : org.hibernate.type.WrappedMaterializedBlobType@53c3f5
+ 23:47:44,798  INFO main impl.SessionFactoryObjectFactory:105 - Not binding factory to JNDI, no JNDI name configured
+ 23:47:44,803  INFO main hbm2ddl.SchemaUpdate:155 - Running hbm2ddl schema update
+ 23:47:44,803  INFO main hbm2ddl.SchemaUpdate:167 - fetching database metadata
+ 23:47:47,291  INFO main hbm2ddl.SchemaUpdate:179 - updating schema
+ 23:47:53,335  INFO main hbm2ddl.TableMetadata:65 - table found: Inventory.MANUFACTURER
+ 23:47:53,335  INFO main hbm2ddl.TableMetadata:66 - columns: [name, mfg_id]
+ 23:47:53,336  INFO main hbm2ddl.TableMetadata:68 - foreign keys: []
+ 23:47:53,336  INFO main hbm2ddl.TableMetadata:69 - indexes: [primary]
+ 23:47:59,480  INFO main hbm2ddl.TableMetadata:65 - table found: Inventory.PRODUCT_HEADER
+ 23:47:59,481  INFO main hbm2ddl.TableMetadata:66 - columns: [product_id, color, name, sub_category_id, mfg_id, mfg_model_id]
+ 23:47:59,481  INFO main hbm2ddl.TableMetadata:68 - foreign keys: []
+ 23:47:59,482  INFO main hbm2ddl.TableMetadata:69 - indexes: [primary, mfg_id]
+ 23:48:07,672  INFO main hbm2ddl.TableMetadata:65 - table found: Inventory.PRODUCT_SUPPLIER
+ 23:48:07,672  INFO main hbm2ddl.TableMetadata:66 - columns: [emi_available, supplier_id, price, product_id, in_stock, mrp, gift_wrap, product_url, currency, discount]
+ 23:48:07,672  INFO main hbm2ddl.TableMetadata:68 - foreign keys: []
+ 23:48:07,673  INFO main hbm2ddl.TableMetadata:69 - indexes: [supplier_id, primary]
+ 23:48:07,675  INFO main hbm2ddl.SchemaUpdate:217 - schema update complete
+ 23:48:09,051  INFO main cfg.Configuration:2156 - configuring from resource: /hibernate.cfg.xml
+ 23:48:09,051  INFO main cfg.Configuration:2175 - Configuration resource: /hibernate.cfg.xml
+ 23:48:09,053  WARN main util.DTDEntityResolver:73 - recognized obsolete hibernate namespace http://hibernate.sourceforge.net/. Use namespace http://www.hibernate.org/dtd/ instead. Refer to Hibernate 3.6 Migration Guide!
+ 23:48:09,057  INFO main cfg.Configuration:2297 - Configured SessionFactory: null
+ 23:48:09,057  INFO main cfg.AnnotationBinder:532 - Binding entity from annotated class: com.dto.Product_Header
+ 23:48:09,057  INFO main annotations.EntityBinder:530 - Bind entity com.dto.Product_Header on table PRODUCT_HEADER
+ 23:48:09,060  INFO main cfg.AnnotationBinder:532 - Binding entity from annotated class: com.dto.Product_Supplier
+ 23:48:09,060  INFO main annotations.EntityBinder:530 - Bind entity com.dto.Product_Supplier on table PRODUCT_SUPPLIER
+ 23:48:09,065  INFO main cfg.AnnotationBinder:532 - Binding entity from annotated class: com.dto.manufacturer
+ 23:48:09,065  INFO main annotations.EntityBinder:530 - Bind entity com.dto.manufacturer on table MANUFACTURER
+ 23:48:09,067  INFO main cfg.Configuration:1676 - Hibernate Validator not found: ignoring
+ 23:48:09,068  INFO main search.HibernateSearchEventListenerRegister:75 - Unable to find org.hibernate.search.event.FullTextIndexEventListener on the classpath. Hibernate Search is not enabled.
+ 23:48:09,069  INFO main connection.DriverManagerConnectionProvider:64 - Using Hibernate built-in connection pool (not for production use!)
+ 23:48:09,069  INFO main connection.DriverManagerConnectionProvider:65 - Hibernate connection pool size: 20
+ 23:48:09,069  INFO main connection.DriverManagerConnectionProvider:68 - autocommit mode: false
+ 23:48:09,069  INFO main connection.DriverManagerConnectionProvider:103 - using driver: com.mysql.jdbc.Driver at URL: jdbc:mysql://74.63.200.251:3306/Inventory
+ 23:48:09,069  INFO main connection.DriverManagerConnectionProvider:109 - connection properties: {user=rahul, password=****}
+ 23:48:29,582  INFO main dialect.Dialect:136 - Using dialect: org.hibernate.dialect.MySQLDialect
+ 23:48:29,584  INFO main cfg.SettingsFactory:126 - Database ->
+       name : MySQL
+    version : 5.1.73
+      major : 5
+      minor : 1
+ 23:48:29,585  INFO main cfg.SettingsFactory:132 - Driver ->
+       name : MySQL-AB JDBC Driver
+    version : mysql-connector-java-5.1.16 ( Revision: ${bzr.revision-id} )
+      major : 5
+      minor : 1
+ 23:48:29,586  INFO main transaction.TransactionFactoryFactory:62 - Using default transaction strategy (direct JDBC transactions)
+ 23:48:29,586  INFO main transaction.TransactionManagerLookupFactory:83 - No TransactionManagerLookup configured (in JTA environment, use of read-write or transactional second-level cache is not recommended)
+ 23:48:29,587  INFO main cfg.SettingsFactory:179 - Automatic flush during beforeCompletion(): disabled
+ 23:48:29,587  INFO main cfg.SettingsFactory:183 - Automatic session close at end of transaction: disabled
+ 23:48:29,587  INFO main cfg.SettingsFactory:190 - JDBC batch size: 20
+ 23:48:29,588  INFO main cfg.SettingsFactory:193 - JDBC batch updates for versioned data: disabled
+ 23:48:29,588  INFO main cfg.SettingsFactory:198 - Scrollable result sets: enabled
+ 23:48:29,589  INFO main cfg.SettingsFactory:206 - JDBC3 getGeneratedKeys(): enabled
+ 23:48:29,589  INFO main cfg.SettingsFactory:214 - Connection release mode: auto
+ 23:48:29,590  INFO main cfg.SettingsFactory:238 - Maximum outer join fetch depth: 2
+ 23:48:29,590  INFO main cfg.SettingsFactory:241 - Default batch fetch size: 1
+ 23:48:29,590  INFO main cfg.SettingsFactory:245 - Generate SQL with comments: disabled
+ 23:48:29,591  INFO main cfg.SettingsFactory:249 - Order SQL updates by primary key: disabled
+ 23:48:29,591  INFO main cfg.SettingsFactory:253 - Order SQL inserts for batching: disabled
+ 23:48:29,592  INFO main cfg.SettingsFactory:431 - Query translator: org.hibernate.hql.ast.ASTQueryTranslatorFactory
+ 23:48:29,592  INFO main ast.ASTQueryTranslatorFactory:47 - Using ASTQueryTranslatorFactory
+ 23:48:29,593  INFO main cfg.SettingsFactory:261 - Query language substitutions: {}
+ 23:48:29,593  INFO main cfg.SettingsFactory:266 - JPA-QL strict compliance: disabled
+ 23:48:29,593  INFO main cfg.SettingsFactory:271 - Second-level cache: enabled
+ 23:48:29,594  INFO main cfg.SettingsFactory:275 - Query cache: disabled
+ 23:48:29,594  INFO main cfg.SettingsFactory:406 - Cache region factory : org.hibernate.cache.impl.NoCachingRegionFactory
+ 23:48:29,595  INFO main cfg.SettingsFactory:285 - Optimize cache for minimal puts: disabled
+ 23:48:29,595  INFO main cfg.SettingsFactory:294 - Structured second-level cache entries: disabled
+ 23:48:29,595  INFO main cfg.SettingsFactory:314 - Echoing all SQL to stdout
+ 23:48:29,596  INFO main cfg.SettingsFactory:323 - Statistics: disabled
+ 23:48:29,596  INFO main cfg.SettingsFactory:327 - Deleted entity synthetic identifier rollback: disabled
+ 23:48:29,596  INFO main cfg.SettingsFactory:343 - Default entity-mode: pojo
+ 23:48:29,596  INFO main cfg.SettingsFactory:347 - Named query checking : enabled
+ 23:48:29,596  INFO main cfg.SettingsFactory:351 - Check Nullability in Core (should be disabled when Bean Validation is on): enabled
+ 23:48:29,610  INFO main impl.SessionFactoryImpl:202 - building session factory
+ 23:48:29,610  INFO main type.BasicTypeRegistry:150 - Type registration [wrapper_characters_clob] overrides previous : org.hibernate.type.CharacterArrayClobType@c0a9f9
+ 23:48:29,611  INFO main type.BasicTypeRegistry:150 - Type registration [characters_clob] overrides previous : org.hibernate.type.PrimitiveCharacterArrayClobType@d72200
+ 23:48:29,611  INFO main type.BasicTypeRegistry:150 - Type registration [blob] overrides previous : org.hibernate.type.BlobType@1f9338f
+ 23:48:29,611  INFO main type.BasicTypeRegistry:150 - Type registration [java.sql.Blob] overrides previous : org.hibernate.type.BlobType@1f9338f
+ 23:48:29,611  INFO main type.BasicTypeRegistry:150 - Type registration [materialized_clob] overrides previous : org.hibernate.type.MaterializedClobType@1a80aea
+ 23:48:29,611  INFO main type.BasicTypeRegistry:150 - Type registration [materialized_blob] overrides previous : org.hibernate.type.MaterializedBlobType@164b9b6
+ 23:48:29,611  INFO main type.BasicTypeRegistry:150 - Type registration [clob] overrides previous : org.hibernate.type.ClobType@1dc64a5
+ 23:48:29,611  INFO main type.BasicTypeRegistry:150 - Type registration [java.sql.Clob] overrides previous : org.hibernate.type.ClobType@1dc64a5
+ 23:48:29,612  INFO main type.BasicTypeRegistry:150 - Type registration [wrapper_materialized_blob] overrides previous : org.hibernate.type.WrappedMaterializedBlobType@53c3f5
+ 23:48:29,627  INFO main impl.SessionFactoryObjectFactory:105 - Not binding factory to JNDI, no JNDI name configured
+ 23:48:29,627  INFO main hbm2ddl.SchemaUpdate:155 - Running hbm2ddl schema update
+ 23:48:29,628  INFO main hbm2ddl.SchemaUpdate:167 - fetching database metadata
+ 23:48:32,219  INFO main hbm2ddl.SchemaUpdate:179 - updating schema
+ 23:48:39,310  INFO main hbm2ddl.TableMetadata:65 - table found: Inventory.MANUFACTURER
+ 23:48:39,310  INFO main hbm2ddl.TableMetadata:66 - columns: [name, mfg_id]
+ 23:48:39,311  INFO main hbm2ddl.TableMetadata:68 - foreign keys: []
+ 23:48:39,311  INFO main hbm2ddl.TableMetadata:69 - indexes: [primary]
+ 23:48:45,864  INFO main hbm2ddl.TableMetadata:65 - table found: Inventory.PRODUCT_HEADER
+ 23:48:45,864  INFO main hbm2ddl.TableMetadata:66 - columns: [product_id, color, name, sub_category_id, mfg_id, mfg_model_id]
+ 23:48:45,865  INFO main hbm2ddl.TableMetadata:68 - foreign keys: []
+ 23:48:45,865  INFO main hbm2ddl.TableMetadata:69 - indexes: [primary, mfg_id]
+ 23:48:54,219  INFO main hbm2ddl.TableMetadata:65 - table found: Inventory.PRODUCT_SUPPLIER
+ 23:48:54,219  INFO main hbm2ddl.TableMetadata:66 - columns: [emi_available, supplier_id, price, product_id, in_stock, mrp, gift_wrap, product_url, currency, discount]
+ 23:48:54,220  INFO main hbm2ddl.TableMetadata:68 - foreign keys: []
+ 23:48:54,220  INFO main hbm2ddl.TableMetadata:69 - indexes: [supplier_id, primary]
+ 23:48:54,220  INFO main hbm2ddl.SchemaUpdate:217 - schema update complete
+ 23:48:54,779  INFO main dto.test:67 - Info Message!
+ 23:48:54,779  WARN main dto.test:68 - Warn Message!
+ 23:48:54,779 ERROR main dto.test:69 - Error Message!
+ 23:48:54,780 FATAL main dto.test:70 - Fatal Message!
+ 
