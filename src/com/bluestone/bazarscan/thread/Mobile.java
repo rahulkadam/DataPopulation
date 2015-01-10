@@ -1,39 +1,42 @@
-package com.bluestone.bazarscan.testclient;
-
+package com.bluestone.bazarscan.thread;
 
 import java.io.IOException;
 import java.util.List;
+
 import org.apache.log4j.Logger;
 
 import com.bluestone.bazarscan.dto.Product;
 import com.bluestone.bazarscan.service.Service;
-import com.fasterxml.jackson.core.JsonGenerationException;
+import com.bluestone.bazarscan.testclient.MobileTestClient;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 
-public class MobileTestClient {
+public class Mobile implements Runnable {
 
-	/**
-	 * @param args
-	 * @throws JsonParseException 
-	 * @throws IOException 
-	 * @throws JsonMappingException 
-	 * @throws JsonGenerationException 
-	 * @throws HibernateException 
-	 */
-	public static void main(String[] args) throws JsonParseException, JsonMappingException, IOException {
-		
+	@Override
+	public void run() {
 		String file="/home/rahul/Desktop/jackson_Sample/src/sample.json";
 		Service svc=new Service(); 
 		Logger log=Logger.getLogger(MobileTestClient.class.getName());
 		log.warn("Warn Message!");
 		log.info("printing log");
 
-		List<Product> list=svc.readjson(file);
+		List<Product> list = null;
+		try {
+			list = svc.readjson(file);
+		} catch (JsonParseException e) {
+			e.printStackTrace();
+		} catch (JsonMappingException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		log.info("Read json file ");
 		svc.storeManufacturer(list);
 		svc.storeProduct_header(list);
 		log.info("store product into Db ");
 		svc.storeProduct_supplier(list);
+		
 	}
+
 }
