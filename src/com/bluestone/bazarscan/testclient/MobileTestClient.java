@@ -31,8 +31,10 @@ public class MobileTestClient {
 		log.info("printing log");
 
 		List<Product> list=svc.readjson(file);
-		svc.storeManufacturer(list);
+		log.info("Read json file ");
+		//svc.storeManufacturer(list);
 		//svc.storeProduct_header(list);
-		//svc.storeProduct_supplier(list);
+		log.info("store product into Db ");
+		svc.storeProduct_supplier(list);
 	}
 }
