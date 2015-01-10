@@ -23,7 +23,6 @@ public class MobileTestClient {
 	 */
 	public static void main(String[] args) throws JsonParseException, JsonMappingException, IOException {
 		
-		
 		String file="/home/rahul/Desktop/jackson_Sample/src/sample.json";
 		Service svc=new Service(); 
 		Logger log=Logger.getLogger(MobileTestClient.class.getName());
@@ -32,8 +31,8 @@ public class MobileTestClient {
 
 		List<Product> list=svc.readjson(file);
 		log.info("Read json file ");
-		//svc.storeManufacturer(list);
-		//svc.storeProduct_header(list);
+		svc.storeManufacturer(list);
+		svc.storeProduct_header(list);
 		log.info("store product into Db ");
 		svc.storeProduct_supplier(list);
 	}
