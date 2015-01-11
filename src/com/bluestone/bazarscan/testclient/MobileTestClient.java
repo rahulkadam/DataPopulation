@@ -7,6 +7,7 @@ import org.apache.log4j.Logger;
 
 import com.bluestone.bazarscan.dto.Product;
 import com.bluestone.bazarscan.service.Service;
+import com.bluestone.bazarscan.util.Utility;
 import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -23,7 +24,7 @@ public class MobileTestClient {
 	 */
 	public static void main(String[] args) throws JsonParseException, JsonMappingException, IOException {
 		
-		String file="/home/rahul/Desktop/jackson_Sample/src/sample.json";
+		String file=Utility.ReadPropertyFile("mobiledata");;
 		Service svc=new Service(); 
 		Logger log=Logger.getLogger(MobileTestClient.class.getName());
 		log.warn("Warn Message!");

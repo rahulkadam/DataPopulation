@@ -2,6 +2,8 @@ package com.bluestone.bazarscan.util;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
@@ -17,12 +19,7 @@ public class Utility {
 	{
 		try{
 		log.info("Creating Session factory");
-		Properties prop = new Properties();
-		InputStream input = new FileInputStream("/opt/oss/jbs/etc/properties");
-		// load a properties file
-		prop.load(input);
-		log.info("get properties "+prop.getProperty("hibernetfile"));
-		File hibernatePropsFile = new File(prop.getProperty("hibernetfile"));
+		File hibernatePropsFile = new File(Utility.ReadPropertyFile("hibernetfile"));
 		log.info("Completed hibernate.cfg.xml File Reading");
 		SessionFactory sessionFactory = new Configuration().configure(
 				hibernatePropsFile)
@@ -42,5 +39,21 @@ public class Utility {
 		Session session=s.openSession();
 		return session;
 	}
-
+	
+	public static String ReadPropertyFile(String key) 
+	{
+		try{
+		Properties prop = new Properties();
+		// load a properties file
+		InputStream input = new FileInputStream("/opt/oss/jbs/etc/properties");
+		prop.load(input);
+		log.info("get properties for "+key+"  : "+prop.getProperty(key));
+		return prop.getProperty(key);
+		}catch(Exception e)
+		{
+			log.info("Error "+e);
+			e.printStackTrace();
+			return null;
+		}
+	}
 }

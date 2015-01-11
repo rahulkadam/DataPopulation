@@ -1,1 +1,2 @@
 hibernetfile=/opt/oss/jbs/etc/hibernate.cfg.xml
+mobiledata=/opt/oss/jbs/data/MobileData.json

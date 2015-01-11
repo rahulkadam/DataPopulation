@@ -8,6 +8,7 @@ import org.apache.log4j.Logger;
 import com.bluestone.bazarscan.dto.Product;
 import com.bluestone.bazarscan.service.Service;
 import com.bluestone.bazarscan.testclient.MobileTestClient;
+import com.bluestone.bazarscan.util.Utility;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 
@@ -15,7 +16,8 @@ public class Mobile implements Runnable {
 
 	@Override
 	public void run() {
-		String file="/opt/oss/jbs/data/sample.json";
+		
+		String file=Utility.ReadPropertyFile("mobiledata");   //"/opt/oss/jbs/data/MobileData.json";
 		Service svc=new Service(); 
 		Logger log=Logger.getLogger(Mobile.class.getName());
 		log.warn("Warn Message!");
