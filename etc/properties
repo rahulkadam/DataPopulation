@@ -1,2 +1,3 @@
 hibernetfile=/opt/oss/jbs/etc/hibernate.cfg.xml
 mobiledata=/opt/oss/jbs/data/MobileData.json
+log4j=/opt/oss/jbs/etc/log4j.properties

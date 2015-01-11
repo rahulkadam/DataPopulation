@@ -8,6 +8,7 @@ import java.io.InputStream;
 import java.util.Properties;
 
 import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -17,6 +18,7 @@ public class Utility {
 	public static Logger log=Logger.getLogger(Utility.class.getName());
 	public static SessionFactory getsessionfactory()
 	{
+		//PropertyConfigurator.configure(Utility.ReadPropertyFile("log4j"));
 		try{
 		log.info("Creating Session factory");
 		File hibernatePropsFile = new File(Utility.ReadPropertyFile("hibernetfile"));
