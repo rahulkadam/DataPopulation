@@ -15,12 +15,11 @@ public class Mobile implements Runnable {
 
 	@Override
 	public void run() {
-		String file="/home/rahul/Desktop/jackson_Sample/src/sample.json";
+		String file="/opt/oss/jbs/data/sample.json";
 		Service svc=new Service(); 
-		Logger log=Logger.getLogger(MobileTestClient.class.getName());
+		Logger log=Logger.getLogger(Mobile.class.getName());
 		log.warn("Warn Message!");
 		log.info("printing log");
-
 		List<Product> list = null;
 		try {
 			list = svc.readjson(file);

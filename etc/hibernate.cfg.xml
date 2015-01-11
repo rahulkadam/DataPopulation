@@ -13,10 +13,10 @@
 		<property name="hibernate.format_sql">true</property>
 		<property name="hibernate.jdbc.batch_size">20</property>
 		<property name="hibernate.hbm2ddl.auto">update</property>
-		<mapping resource="com.dto.Product" />
-		<mapping class="com.dto.Product_Header" />
-		<mapping class="com.dto.Product_Supplier" />
-		<mapping class="com.dto.manufacturer" />
+		<mapping class="com.bluestone.bazarscan.dto.Product" />
+		<mapping class="com.bluestone.bazarscan.dto.Product_Header" />
+		<mapping class="com.bluestone.bazarscan.dto.Product_Supplier" />
+		<mapping class="com.bluestone.bazarscan.dto.manufacturer" />
 		
 	</session-factory>
 </hibernate-configuration>
