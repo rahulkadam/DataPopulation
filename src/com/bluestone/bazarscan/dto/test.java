@@ -43,7 +43,7 @@ public class test {
 		  log.warn("Warn Message!");
 		log.info("printing log");
 
-		List<Product> list=svc.readjson(file);
+		List<MobileDetails> list=svc.readMobileJson(file);
 		//svc.storeManufacturer(list);
 		//svc.storeProduct_header(list);
 		//svc.storeProduct_supplier(list);

@@ -17,6 +17,7 @@
 		<mapping class="com.bluestone.bazarscan.dto.Product_Header" />
 		<mapping class="com.bluestone.bazarscan.dto.Product_Supplier" />
 		<mapping class="com.bluestone.bazarscan.dto.manufacturer" />
+		<mapping class="com.bluestone.bazarscan.dto.Product_Line" />
 		
 	</session-factory>
 </hibernate-configuration>

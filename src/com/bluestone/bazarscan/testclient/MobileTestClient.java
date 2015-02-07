@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.util.List;
 import org.apache.log4j.Logger;
 
-import com.bluestone.bazarscan.dto.Product;
+import com.bluestone.bazarscan.dto.MobileDetails;
 import com.bluestone.bazarscan.service.Service;
 import com.bluestone.bazarscan.util.Utility;
 import com.fasterxml.jackson.core.JsonGenerationException;
@@ -30,11 +30,11 @@ public class MobileTestClient {
 		log.warn("Warn Message!");
 		log.info("printing log");
 
-		List<Product> list=svc.readjson(file);
+		List<MobileDetails> list=svc.readMobileJson(file);
 		log.info("Read json file ");
-		svc.storeManufacturer(list);
-		svc.storeProduct_header(list);
+		svc.storeMobileManufacturer(list);
+		svc.storeMobileProduct_Header(list);
 		log.info("store product into Db ");
-		svc.storeProduct_supplier(list);
+		svc.storeMobileProduct_Supplier(list);
 	}
 }

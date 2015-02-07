@@ -26,6 +26,8 @@ public class Product_Supplier {
 	public String emi_available;
 	@Column(name="gift_wrap")
 	public char gift_wrap;
+	@Column(name="MFG_ID")
+	public int mfgId;
 	public String getSupplier_id() {
 		return supplier_id;
 	}
@@ -87,13 +89,21 @@ public class Product_Supplier {
 	public void setGift_wrap(char gift_wrap) {
 		this.gift_wrap = gift_wrap;
 	}
+	
+	public int getMfgId() {
+		return mfgId;
+	}
+	public void setMfgId(int mfgId) {
+		this.mfgId = mfgId;
+	}
 	@Override
 	public String toString() {
-		return "Product_Supplier [supplier_id=" + supplier_id + ", price="
-				+ price + ", discount=" + discount + ", mrp=" + mrp
-				+ ", in_stock=" + in_stock + ", currency=" + currency
-				+ ", product_url=" + product_url + ", emi_available="
-				+ emi_available + ", gift_wrap=" + gift_wrap + "]";
+		return "Product_Supplier [supplier_id=" + supplier_id + ", product_id="
+				+ product_id + ", price=" + price + ", discount=" + discount
+				+ ", mrp=" + mrp + ", in_stock=" + in_stock + ", currency="
+				+ currency + ", product_url=" + product_url
+				+ ", emi_available=" + emi_available + ", gift_wrap="
+				+ gift_wrap + ", mfgId=" + mfgId + "]";
 	}
 	
 	

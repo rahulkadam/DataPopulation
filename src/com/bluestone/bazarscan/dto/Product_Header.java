@@ -19,6 +19,14 @@ public class Product_Header {
 	public String mfg_id;
 	@Column(name = "NAME")
 	public String product_name;
+	@Column(name = "HEIGHT")
+	public String height;
+	@Column(name = "WIDTH")
+	public String width;
+	@Column(name = "WEIGHT")
+	public String weight;
+	@Column(name = "SUB_TITLE")
+	public String sub_title;
 	public String getId() {
 		return id;
 	}
@@ -55,13 +63,41 @@ public class Product_Header {
 	public void setProduct_name(String product_name) {
 		this.product_name = product_name;
 	}
+	
+	public String getHeight() {
+		return height;
+	}
+	public void setHeight(String height) {
+		this.height = height;
+	}
+	public String getWidth() {
+		return width;
+	}
+	public void setWidth(String width) {
+		this.width = width;
+	}
+	public String getWeight() {
+		return weight;
+	}
+	public void setWeight(String weight) {
+		this.weight = weight;
+	}
+	public String getSub_title() {
+		return sub_title;
+	}
+	public void setSub_title(String sub_title) {
+		this.sub_title = sub_title;
+	}
 	@Override
 	public String toString() {
 		return "Product_Header [id=" + id + ", sub_category=" + sub_category
 				+ ", mfg_model_id=" + mfg_model_id + ", product_color="
 				+ product_color + ", mfg_id=" + mfg_id + ", product_name="
-				+ product_name + "]";
-	}   
+				+ product_name + ", height=" + height + ", width=" + width
+				+ ", weight=" + weight + ", sub_title=" + sub_title + "]";
+	}
+	
+	
 	
 	
 }

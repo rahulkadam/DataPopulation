@@ -1,6 +1,10 @@
 package com.bluestone.bazarscan.dao.impl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import javax.print.attribute.HashAttributeSet;
 
 import org.apache.log4j.Logger;
 import org.hibernate.Criteria;
@@ -9,8 +13,11 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Projections;
 import com.bluestone.bazarscan.dao.BazarScanDao;
-import com.bluestone.bazarscan.dto.Product;
+import com.bluestone.bazarscan.dto.MobileDetails;
 import com.bluestone.bazarscan.dto.Product_Header;
+import com.bluestone.bazarscan.dto.Product_Line;
+import com.bluestone.bazarscan.dto.Product_Spec_Grp_Lines;
+import com.bluestone.bazarscan.dto.Product_Spec_Grps;
 import com.bluestone.bazarscan.dto.Product_Supplier;
 import com.bluestone.bazarscan.dto.manufacturer;
 import com.bluestone.bazarscan.testclient.MobileTestClient;
@@ -109,7 +116,7 @@ public class BazarScanDaoImpl implements BazarScanDao{
 		Session session = bazarScanImpl.getSession();
 		try {
 				Transaction tx = session.beginTransaction();
-				session.save(product_Supplier);
+				session.saveOrUpdate(product_Supplier);
 				tx.commit();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -117,23 +124,24 @@ public class BazarScanDaoImpl implements BazarScanDao{
 	}
 
 	@Override
-	public void storesubcategory(List<Product> productList) {
+	public void storesubcategory(List<MobileDetails> productList) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void storeReviews(List<Product> productList) {
+	public void storeReviews(List<MobileDetails> productList) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public boolean isProductExists(String product_name, String modelId) {
-		Query query=bazarScanImpl.getSession().createQuery("from Product_Header p where p.product_name='"+product_name+"' AND p.mfg_model_id='"+modelId+"'");
+	public boolean isProductExists(String productId) {
+		Query query=bazarScanImpl.getSession().createQuery("from Product_Header p where p.id='"+productId+"'");
 		if(query!=null && query.list().size()>0)
 		{
-			System.out.println("value exist: "+product_name+ "  "+modelId);
+			System.out.println("value exist: "+productId);
+			session.flush();
 			return true;
 		}
 		return false;
@@ -156,4 +164,117 @@ public class BazarScanDaoImpl implements BazarScanDao{
 		}
 		return mfg_id;
 	}
+	
+
+	@Override
+	public void storeLineDetails(Product_Line product_Line) {
+		log.info("storeLineDetails Entered");
+		Session session = bazarScanImpl.getSession();
+		try {
+//			if(!isProductExists(product_Header.getProduct_name(),product_Header.getSub_category()))
+			{
+				Transaction tx = session.beginTransaction();
+				session.save(product_Line);
+				tx.commit();
+			}
+		} catch (Exception e) {
+			log.info("storeLineDetails Catch Error occure");
+			e.printStackTrace();
+		}
+		log.info("storeLineDetails Exited");
+	}
+
+	@Override
+	public String getGroup_Line_Id(String specName) {
+
+		List<Product_Spec_Grp_Lines> result = (List<Product_Spec_Grp_Lines>) bazarScanImpl.getSession()
+		.createQuery(
+				"from Product_Spec_Grp_Lines where specificationName='"
+						+ specName + "'").list();
+		String groupLineId="";
+		if(result !=null)
+		{
+			Product_Spec_Grp_Lines mm = (Product_Spec_Grp_Lines) result.get(0);
+			groupLineId=mm.getGroupLineId();
+		}
+		return groupLineId;
+		
+	}
+
+	@Override
+	public String getGroup_Id(String Group_Id) {
+
+		List<Product_Spec_Grps> result = (List<Product_Spec_Grps>) bazarScanImpl.getSession()
+		.createQuery(
+				"from Product_Spec_Grps where specificationGroup='"
+						+ Group_Id + "'").list();
+		String groupLineId="";
+		if(result !=null)
+		{
+			Product_Spec_Grps mm = (Product_Spec_Grps) result.get(0);
+			groupLineId=mm.getGroupId();
+		}
+		return groupLineId;
+	}
+	
+	public void updateProduct_header(Product_Header product_Header)
+	{
+	
+		log.info("updateProduct_header Entered");
+		Session session = bazarScanImpl.getSession();
+		try {
+			{
+				Transaction tx = session.beginTransaction();
+				session.update(product_Header);
+				tx.commit();
+			}
+		} catch (Exception e) {
+			log.info("updateProduct_header Catch Error occure");
+			e.printStackTrace();
+		}
+		log.info("updateProduct_header Exited");
+	}
+	
+	public Map<String,String> getGroup_Line(){
+		
+
+		List<Product_Spec_Grp_Lines> result = (List<Product_Spec_Grp_Lines>) bazarScanImpl.getSession()
+		.createQuery(
+				"from Product_Spec_Grp_Lines").list();
+		String groupLineId="";
+		String spec="";
+		Map<String,String> GroupLineMap=new HashMap<String, String>();
+		if(result !=null)
+		{
+			for(Product_Spec_Grp_Lines product_Spec_Grp_Lines:result)
+			{
+			groupLineId=product_Spec_Grp_Lines.getGroupLineId();
+			spec=product_Spec_Grp_Lines.getSpecificationName();
+			GroupLineMap.put(spec, groupLineId);
+			}
+		}
+		return GroupLineMap;
+	}
+	public Map<String,String> getGroups()
+	{
+
+		List<Product_Spec_Grps> result = (List<Product_Spec_Grps>) bazarScanImpl.getSession()
+		.createQuery(
+				"from Product_Spec_Grps").list();
+		String groupLineId="";
+		String spec="";
+		Map<String,String> GroupsMap=new HashMap<String, String>();
+		if(result !=null)
+		{
+			for(Product_Spec_Grps product_Spec_Grps:result)
+			{
+			groupLineId=product_Spec_Grps.getGroupId();
+			spec=product_Spec_Grps.getSpecificationGroup();
+			GroupsMap.put(spec, groupLineId);
+			}
+		}
+		return GroupsMap;
+	}
+
+
 }

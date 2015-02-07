@@ -47,7 +47,7 @@ public class Utility {
 		try{
 		Properties prop = new Properties();
 		// load a properties file
-		InputStream input = new FileInputStream("/opt/oss/jbs/etc/properties");
+		InputStream input = new FileInputStream("/home/rahul/Desktop/config/properties");
 		prop.load(input);
 		log.info("get properties for "+key+"  : "+prop.getProperty(key));
 		return prop.getProperty(key);
