@@ -97,7 +97,4 @@ public class Product_Header {
 				+ ", weight=" + weight + ", sub_title=" + sub_title + "]";
 	}
 	
-	
-	
-	
 }

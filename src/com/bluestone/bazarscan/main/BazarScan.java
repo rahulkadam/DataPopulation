@@ -22,7 +22,7 @@ public class BazarScan {
 	
 	public static void main(String args[])
 	{
-	//	PropertyConfigurator.configure(Utility.ReadPropertyFile("log4j"));
+		PropertyConfigurator.configure(Utility.ReadPropertyFile("log4j"));
 		log.info("Initializing BazarScan");
 		BazarScan bazarScan=new BazarScan();
 		bazarScan.init();
@@ -30,19 +30,17 @@ public class BazarScan {
 	}
 	public void init()
 	{
-		log.info("Initializing MobileDataManager");
+		//log.info("Initializing MobileDataManager");
 		//MobileDataManager mobileDataManager=new MobileDataManager();
-		//scheduledExecutorService.scheduleAtFixedRate(mobileDataManager, 1000, 1000*1000, TimeUnit.MILLISECONDS);
-		log.info("Exiting  MobileDataManager");
-		log.info("Initializing BookDataManager");
+	//	//scheduledExecutorService.scheduleAtFixedRate(mobileDataManager, 1000, 1000*1000, TimeUnit.MILLISECONDS);
+	//	log.info("Exiting  MobileDataManager");
+	//	log.info("Initializing BookDataManager");
 		//BookDataManager bookDataManager=new BookDataManager();
 		//scheduledExecutorService.scheduleAtFixedRate(bookDataManager, 1000, 1000*1000*90, TimeUnit.MILLISECONDS);
-		log.info("Exiting  BookDataManager");
+		//log.info("Exiting  BookDataManager");
 		log.info("Initializing JewelleryDataManager");
 		JewelleryDataManager jewelleryDataManager=new JewelleryDataManager();
 		scheduledExecutorService.scheduleAtFixedRate(jewelleryDataManager, 1000, 1000*1000, TimeUnit.MILLISECONDS);
 		log.info("Exiting  JewelleryDataManager");
-		
-		
 	}
 }

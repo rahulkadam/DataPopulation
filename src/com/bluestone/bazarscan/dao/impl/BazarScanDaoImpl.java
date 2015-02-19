@@ -28,7 +28,7 @@ public class BazarScanDaoImpl implements BazarScanDao{
 	private static Session session=null;
 	
 	private static BazarScanDaoImpl bazarScanImpl;
-	private Logger log=Logger.getLogger(MobileTestClient.class.getName());
+	private Logger log=Logger.getLogger(BazarScanDaoImpl.class.getName());
 	
 	private BazarScanDaoImpl() {
 
@@ -115,12 +115,51 @@ public class BazarScanDaoImpl implements BazarScanDao{
 	public void storeProduct_supplier(Product_Supplier product_Supplier) {
 		Session session = bazarScanImpl.getSession();
 		try {
+			  if(!isExistProductSupplierWithProductId(product_Supplier.getProduct_id()))
+			  {
 				Transaction tx = session.beginTransaction();
-				session.saveOrUpdate(product_Supplier);
+				session.clear();
+				session.save(product_Supplier);
 				tx.commit();
+			  }else
+			  {
+				 // product_Supplier.getCurrency()
+				  log.info("Product Supplier Exist with supplier Id ="+product_Supplier.getSupplier_id());
+				  String updateProductSupplier="update Product_Supplier set "+
+				  		"in_stock= '"+product_Supplier.getIn_stock()+"',currency ='"+product_Supplier.getCurrency()+"',"+
+				  		"product_url='"+product_Supplier.getProduct_id()+"',emi_available='"+product_Supplier.getEmi_available()+"',"+
+				  		"gift_wrap='"+product_Supplier.getGift_wrap()+"',mfgId='"+product_Supplier.getMfgId()+"'";
+				  if(product_Supplier.getDiscount()!=null)
+				  {
+					  updateProductSupplier=updateProductSupplier+",discount= '"+product_Supplier.getDiscount()+"'";  
+				  }
+				  if(product_Supplier.getPrice()!=null)
+				  {
+					  updateProductSupplier=updateProductSupplier+",price='"+product_Supplier.getPrice()+"'";
+				  }
+				  if(product_Supplier.getMrp()!=null)
+				  {
+					  updateProductSupplier=updateProductSupplier+",mrp ='"+product_Supplier.getMrp()+"'";
+					  		
+				  }
+				  updateProductSupplier=updateProductSupplier+" where product_id='"+product_Supplier.getProduct_id()+"'";
+				  Transaction tx = session.beginTransaction();
+				  int i=session.createQuery(updateProductSupplier).executeUpdate();
+//				  Criteria criteria=session.createCriteria(Product_Supplier.class);
+				  tx.commit(); 
+			  }
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	private boolean isExistProductSupplierWithProductId(String product_id) {
+		String ProductSupplierExistQuery="from Product_Supplier where product_Id='"+product_id +"'";
+		Query query=bazarScanImpl.getSession().createQuery(ProductSupplierExistQuery);
+		List<Product_Supplier> product_SupplierList=(List<Product_Supplier>)query.list();
+		if(product_SupplierList!=null && product_SupplierList.size()>0)
+			return true;
+		return false;
 	}
 
 	@Override
@@ -171,10 +210,22 @@ public class BazarScanDaoImpl implements BazarScanDao{
 		log.info("storeLineDetails Entered");
 		Session session = bazarScanImpl.getSession();
 		try {
-//			if(!isProductExists(product_Header.getProduct_name(),product_Header.getSub_category()))
+			if(!isProductLineExists(product_Line.getProduct_Id(),product_Line.getGroup_Id(),product_Line.getGroup_Line_Id()))
 			{
 				Transaction tx = session.beginTransaction();
-				session.save(product_Line);
+				session.clear();
+				session.merge(product_Line);
+				tx.commit();
+				
+			}
+			else
+			{
+				log.info("Product line already exist with productId +"+product_Line.getProduct_Id());
+				String updateProductLineQuery="update Product_Line set value='"+product_Line.getValue()+"', summary='"+product_Line.getSummary()+"'"+
+				" where product_Id='"+product_Line.getProduct_Id()+"' and group_Id='"+product_Line.getGroup_Id()+"' and group_Line_Id='"+product_Line.getGroup_Line_Id()+"'";
+				Transaction tx = session.beginTransaction();
+				int i=session.createQuery(updateProductLineQuery).executeUpdate();
+				log.info("Updating product_line :"+i);
 				tx.commit();
 			}
 		} catch (Exception e) {
@@ -182,6 +233,15 @@ public class BazarScanDaoImpl implements BazarScanDao{
 			e.printStackTrace();
 		}
 		log.info("storeLineDetails Exited");
+	}
+
+	private boolean isProductLineExists(String product_Id,String group_Id,String group_line_Id) {
+		String fetchProductLineByProductId="from Product_Line where product_Id='"+product_Id+"' and group_Id='"+group_Id+"' and group_Line_Id='"+group_line_Id+"'";
+      Query q=bazarScanImpl.getSession().createQuery(fetchProductLineByProductId);
+      List<Product_Line> product_Line_List=(List<Product_Line>)q.list();
+		if(product_Line_List !=null && product_Line_List.size()>0)
+			return true;
+		return false;
 	}
 
 	@Override
@@ -225,7 +285,7 @@ public class BazarScanDaoImpl implements BazarScanDao{
 		try {
 			{
 				Transaction tx = session.beginTransaction();
-				session.update(product_Header);
+				session.save(product_Header);
 				tx.commit();
 			}
 		} catch (Exception e) {
@@ -235,7 +295,7 @@ public class BazarScanDaoImpl implements BazarScanDao{
 		log.info("updateProduct_header Exited");
 	}
 	
-	public Map<String,String> getGroup_Line(){
+	public Map<Product_Spec_Grp_Lines,String> getGroup_Line(){
 		
 
 		List<Product_Spec_Grp_Lines> result = (List<Product_Spec_Grp_Lines>) bazarScanImpl.getSession()
@@ -243,14 +303,15 @@ public class BazarScanDaoImpl implements BazarScanDao{
 				"from Product_Spec_Grp_Lines").list();
 		String groupLineId="";
 		String spec="";
-		Map<String,String> GroupLineMap=new HashMap<String, String>();
+		Map<Product_Spec_Grp_Lines,String> GroupLineMap=new HashMap<Product_Spec_Grp_Lines, String>();
 		if(result !=null)
 		{
 			for(Product_Spec_Grp_Lines product_Spec_Grp_Lines:result)
 			{
 			groupLineId=product_Spec_Grp_Lines.getGroupLineId();
 			spec=product_Spec_Grp_Lines.getSpecificationName();
-			GroupLineMap.put(spec, groupLineId);
+			product_Spec_Grp_Lines.getGroupId();
+			GroupLineMap.put(product_Spec_Grp_Lines, groupLineId);
 			}
 		}
 		return GroupLineMap;

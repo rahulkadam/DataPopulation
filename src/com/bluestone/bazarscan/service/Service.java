@@ -19,6 +19,7 @@ import com.bluestone.bazarscan.dto.BluestoneData;
 import com.bluestone.bazarscan.dto.MobileDetails;
 import com.bluestone.bazarscan.dto.Product_Header;
 import com.bluestone.bazarscan.dto.Product_Line;
+import com.bluestone.bazarscan.dto.Product_Spec_Grp_Lines;
 import com.bluestone.bazarscan.dto.Product_Supplier;
 import com.bluestone.bazarscan.dto.manufacturer;
 import com.bluestone.bazarscan.util.Utility;
@@ -113,16 +114,20 @@ public class Service {
 
 	}
 ///--------------------------------Jwellary----------------------
-	public List<BluestoneData> readJewelleryJson(String filename) throws JsonParseException,
-	JsonMappingException, IOException {
-ObjectMapper objectMapper = new ObjectMapper();
-objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-List<BluestoneData> jewelleryDetailsList = objectMapper.readValue(
-		new File(filename),
-		objectMapper.getTypeFactory().constructCollectionType(List.class,
-				BluestoneData.class));
-return jewelleryDetailsList;
-}
+	public List<BluestoneData> readJewelleryJson(String filename) {
+		try{
+				ObjectMapper objectMapper = new ObjectMapper();
+				objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+				List<BluestoneData> jewelleryDetailsList = objectMapper.readValue(
+						new File(filename),
+						objectMapper.getTypeFactory().constructCollectionType(List.class,
+								BluestoneData.class));
+				return jewelleryDetailsList;
+	}catch(Exception e){
+	   System.out.println("Error occured while reading BluestoneData");
+	}
+		return null;
+	}
 	
 	public void storeBluestoneProduct_header(List<BluestoneData> productList) {
 
@@ -159,9 +164,12 @@ return jewelleryDetailsList;
 		}
 	public void storeBluestoneLineDetails(List<BluestoneData> bluestoneDataList)
 	{
-    	Map<String,String> groupLineMap=bazarScanImpl.getGroup_Line();	
+    	Map<Product_Spec_Grp_Lines,String> groupLineMap=bazarScanImpl.getGroup_Line();	
     	Map<String,String> groupsMap=bazarScanImpl.getGroups();	
-	  for(BluestoneData bluestoneData:bluestoneDataList)
+    	System.out.println("Group_Line :"+ groupLineMap);
+    	System.out.println("getGroups :"+ groupsMap);    	
+    try{
+    for(BluestoneData bluestoneData:bluestoneDataList)
 	  {
 		  Map<String,String> stone_details=bluestoneData.getStone_details();
 		  Set<String> keys=stone_details.keySet();
@@ -177,30 +185,51 @@ return jewelleryDetailsList;
 					}else{
 						  product_Line.setProduct_Id(bluestoneData.getProduct_code()[0]);
 					}
-				  product_Line.setGroup_Line_Id(groupLineMap.get(key)); //bazarScanImpl.getGroup_Line_Id(key.trim()));
-				  product_Line.setGroup_Id(groupsMap.get(stone_details.get("Title"))); //bazarScanImpl.getGroup_Id(stone_details.get("Title")));
+				  
+				  if(groupsMap.get(stone_details.get("Title"))!=null)
+				  {  
+					  product_Line.setGroup_Id(groupsMap.get(stone_details.get("Title"))); //bazarScanImpl.getGroup_Id(stone_details.get("Title")));
+				  }else{
+					  product_Line.setGroup_Id(groupsMap.get("Diamond DETAILS"));
+				  }
+				  Product_Spec_Grp_Lines product_Spec_Grp_Lines=new Product_Spec_Grp_Lines();
+				  product_Spec_Grp_Lines.setGroupId(product_Line.getGroup_Id());
+				  product_Spec_Grp_Lines.setSpecificationName(key);
+				  product_Line.setGroup_Line_Id(groupLineMap.get(product_Spec_Grp_Lines)); //bazarScanImpl.getGroup_Line_Id(key.trim()));
 				  product_Line.setValue(stone_details.get(key));
 				  long line_id=bazarScanImpl.getRowCount(Product_Line.class);
 				  line_id=line_id+1;
 				  product_Line.setProduct_Line_Id(String.valueOf(line_id));
 				  bazarScanImpl.storeLineDetails(product_Line);
-				  System.out.println("Product_Line   :"+product_Line);
+				  //System.out.println("Product_Line   :"+product_Line);
 				  }catch(Exception e)
 				  {
-					  e.printStackTrace();
+					  //e.printStackTrace();
 				  }
 			  }
 		  }
-	  }
+	  }}
+	  catch(Exception e){e.printStackTrace();}
 	}
 
 	public void storeBlueStoneproductSupplier(List<BluestoneData> bluestoneDataList)
 	{
-		
+		int i=0;
+		try{
 		for(BluestoneData bluestoneData:bluestoneDataList)
 		  {
+			i++;
 			Product_Supplier product_Supplier=new Product_Supplier(); 
-			product_Supplier.setPrice(Double.valueOf(bluestoneData.getPrice()[0]));
+			String price="";
+			if(bluestoneData.getPrice().length>0)
+			{
+				price=bluestoneData.getPrice()[0];
+				if(bluestoneData.getPrice()[0].contains(","))
+				{
+					price=bluestoneData.getPrice()[0].replace(",", "");
+				}
+				product_Supplier.setPrice(Double.valueOf(price));
+			}
 			if(bluestoneData.getProduct_code()[0].startsWith("Product code"))
 			{
 				product_Supplier.setProduct_id(bluestoneData.getProduct_code()[0].substring(13));
@@ -209,11 +238,17 @@ return jewelleryDetailsList;
 			}
 			product_Supplier.setCurrency("INR");
 			product_Supplier.setSupplier_id(String.valueOf(bazarScanImpl.getRowCount(Product_Supplier.class)+1));
-			product_Supplier.setMfgId(186);
+			product_Supplier.setMfgId(1);
 			product_Supplier.setProduct_url(bluestoneData.getUrl());
 			bazarScanImpl.storeProduct_supplier(product_Supplier);
-			System.out.println(product_Supplier);
+			System.out.println(i+" : product_Supplier ");
+			//System.out.println("endddd");*/
 		  }
+		}catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		System.out.println("Store Bluestone supplier complete "+bluestoneDataList.size());
 	}
 //---------------Book----------------------------------------------
 	

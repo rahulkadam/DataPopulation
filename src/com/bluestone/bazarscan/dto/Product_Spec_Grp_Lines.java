@@ -39,6 +39,32 @@ public class Product_Spec_Grp_Lines {
 				+ ", specificationName=" + specificationName + ", groupId="
 				+ groupId + "]";
 	}
+	@Override
+	public int hashCode() {
+		return 1;
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Product_Spec_Grp_Lines other = (Product_Spec_Grp_Lines) obj;
+		if (groupId == null) {
+			if (other.groupId != null)
+				return false;
+		} else if (!groupId.equals(other.groupId))
+			return false;
+		if (specificationName == null) {
+			if (other.specificationName != null)
+				return false;
+		} else if (!specificationName.equals(other.specificationName))
+			return false;
+		return true;
+	}
+	
+	
 
 	
 	

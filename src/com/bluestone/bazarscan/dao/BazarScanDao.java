@@ -7,6 +7,7 @@ import java.util.Set;
 import com.bluestone.bazarscan.dto.MobileDetails;
 import com.bluestone.bazarscan.dto.Product_Header;
 import com.bluestone.bazarscan.dto.Product_Line;
+import com.bluestone.bazarscan.dto.Product_Spec_Grp_Lines;
 import com.bluestone.bazarscan.dto.Product_Supplier;
 import com.bluestone.bazarscan.dto.manufacturer;
 
@@ -29,7 +30,7 @@ public interface BazarScanDao {
 	public String getGroup_Id(String Group_Id);
 	
 	public void updateProduct_header(Product_Header product_Header);
-	public Map<String,String> getGroup_Line();
+	public Map<Product_Spec_Grp_Lines, String> getGroup_Line();
 	public Map<String,String> getGroups();
 
 }
